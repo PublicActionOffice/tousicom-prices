@@ -1,8 +1,8 @@
 name: snapshot
 on:
   schedule:
-    - cron: '45 2 * * 1-5'
-    - cron: '45 6 * * 1-5'
+    - cron: '52 2 * * 1-5'
+    - cron: '52 6 * * 1-5'
   workflow_dispatch:
     inputs:
       edition:
@@ -21,7 +21,7 @@ jobs:
       - name: fetch
         run: |
           if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then ED="${{ github.event.inputs.edition }}";
-          elif [ "${{ github.event.schedule }}" = "45 2 * * 1-5" ]; then ED=morning; else ED=evening; fi
+          elif [ "${{ github.event.schedule }}" = "52 2 * * 1-5" ]; then ED=morning; else ED=evening; fi
           python fetch_prices.py "$ED"
       - name: commit
         run: |
